@@ -1,3 +1,20 @@
+INSERT INTO PREDIO VALUES
+(3, 'Terraço Itália'),
+(43423, 'PREDIO 43423'),
+(1, 'PREDIO1'),
+(2, 'Informática - aulas');
+
+INSERT INTO SALA VALUES
+(3, 103, 'Sala 103', 40),
+(43423, 101, 'Sala 101', 36),
+(1, 1, 'Sala 1', 35),
+(1, 101, 'Sala 101', 55),
+(2, 101, 'Sala 101', 40);
+
+INSERT INTO TITULACAO VALUES
+(1, 'Doutor'),
+(2, 'Mestre');
+
 INSERT INTO Depto VALUES
 ('INF01', 'Informártica'),
 ('00001', 'Administrativo'),
@@ -7,6 +24,11 @@ INSERT INTO Depto VALUES
 ('00005', 'Marketing'),
 ('00006', 'Produção'),
 ('00007', 'Jurídico');
+
+INSERT INTO PROFESSOR VALUES 
+(1, 'INF01', 1, 'Anderson'),
+(2, 'INF01', 1, 'Antunes'),
+(3, '00002', 1, 'Felix');
 
 INSERT INTO Disciplina VALUES
 ('INF01', 1, 'Redes', 3),
@@ -19,33 +41,8 @@ INSERT INTO PreReq VALUES
 ('00001', 2, '00001', 1),
 ('INF01', 1, '00001', 1);
 
-INSERT INTO PROFESSOR VALUES 
-(1, 'INF01', 1, 'Anderson'),
-(2, 'INF01', 1, 'Antunes'),
-(3, '00002', 1, 'Felix');
-
-INSERT INTO HORARIO VALUES
-(20021, 'INF01', 1, '04', 5, 18, 101, 43423, 50),
-(20021, 'INF01', 1, '03', 2, 15, 101, 1, 50),
-(20021, 'INF01', 1, '03', 4, 15, 101, 1, 47),
-(20021, 'INF01', 1, '02', 4, 15, 101, 1, 50),
-(20021, '00002', 1, '02', 4, 8, 101, 2, 38),
-(20021, '00002', 1, '01', 3, 13, 1, 1, 40),
-(20021, '00001', 1, '01', 2, 10, 1, 1, 40),
-(20021, 'INF01', 1, '01', 3, 13, 101, 2, 45);
-
-INSERT INTO PREDIO VALUES
-(43423, 'PREDIO 43423'),
-(1, 'PREDIO1'),
-(2, 'Informática - aulas');
-
-INSERT INTO SALA VALUES
-(43423, 101, 'Sala 101', 36),
-(1, 1, 'Sala 1', 35),
-(1, 101, 'Sala 101', 55),
-(2, 101, 'Sala 101', 40);
-
 INSERT INTO TURMA VALUES
+(20021, '00001', 1, '04', 60),
 (20021, '00001', 1, '03', 54),
 (20021, 'INF01', 1, '04', 54),
 (20021, 'INF01', 1, '03', 50),
@@ -57,6 +54,7 @@ INSERT INTO TURMA VALUES
 (20021, '00002', 1, '02', 40);
 
 INSERT INTO PROFTURMA VALUES
+(20021, '00001', 1, '04', 1),
 (20021, '00001', 1, '03', 1),
 (20021, 'INF01', 1, '04', 2),
 (20021, 'INF01', 1, '03', 2),
@@ -67,9 +65,16 @@ INSERT INTO PROFTURMA VALUES
 (20021, '00002', 1, '01', 2),
 (20051, '00002', 1, '01', 3);
 
-INSERT INTO TITULACAO VALUES
-(1, 'Doutor'),
-(2, 'Mestre');
+INSERT INTO HORARIO VALUES
+(20021, '00001', 1, '04', 2, 10, 103, 3, 40),
+(20021, 'INF01', 1, '04', 5, 18, 101, 43423, 50),
+(20021, 'INF01', 1, '03', 2, 15, 101, 1, 50),
+(20021, 'INF01', 1, '03', 4, 15, 101, 1, 47),
+(20021, 'INF01', 1, '02', 4, 15, 101, 1, 50),
+(20021, '00002', 1, '02', 4, 8, 101, 2, 38),
+(20021, '00002', 1, '01', 3, 13, 1, 1, 40),
+(20021, '00001', 1, '01', 2, 10, 1, 1, 40),
+(20021, 'INF01', 1, '01', 3, 13, 101, 2, 45);
 
 
 
