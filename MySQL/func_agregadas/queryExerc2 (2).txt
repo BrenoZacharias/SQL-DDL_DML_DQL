@@ -1,0 +1,115 @@
+create database func_agregadas;
+
+use func_agregadas;
+
+create table tb_peca (
+	codPeca char(2) primary key,
+    nomePeca varchar(255),
+    corPeca varchar(255),
+    pesoPeca int,
+    cidadePeca varchar(255)
+);
+
+create table tb_embarque (
+	codPeca char(2),
+    codFornec char(2),
+    QtDeEmbarc int
+);
+
+create table tb_fornec (
+	codFornec char(2) primary key,
+    nomeFornec varchar(255),
+    statusFornec smallint,
+    cidadeFornec varchar(255)
+);
+
+ALTER TABLE tb_embarque
+ADD CONSTRAINT FK_TB_EMBARQUE_TB_PECA
+FOREIGN KEY (codPeca) REFERENCES tb_peca(codPeca);
+
+ALTER TABLE tb_embarque
+ADD CONSTRAINT FK_TB_EMBARQUE_TB_FORNEC
+FOREIGN KEY (codFornec) REFERENCES tb_fornec(codFornec);
+
+INSERT INTO tb_peca(codPeca, nomePeca, corPeca, pesoPeca, cidadePeca) values 
+	('P1', 'Eixo', 'Cinza', 10, 'Poa'),
+    ('P2', 'Rolamento', 'Preto', 16, 'Rio'),
+    ('P3', 'Mancal', 'Verde' , 30, 'São Paulo');
+    
+INSERT INTO tb_fornec (codFornec, nomeFornec, statusFornec, cidadeFornec) values
+	('F1', 'Silva', 5, 'São Paulo'),
+    ('F2', 'Souza', 10, 'Rio'),
+    ('F3', 'Alvares', 5, 'São Paulo'),
+    ('F4', 'Tavares', 8, 'Rio');
+    
+INSERT INTO tb_embarque(codPeca, codFornec, QtDeEmbarc) values 
+	('P1','F1', 300),
+    ('P1','F2', 400),
+    ('P2','F3', 200),
+    ('P2','F1', 300),
+    ('P2','F4', 350);
+    
+/* 1)Obter o número de fornecedores na base de dados  */
+
+SELECT COUNT(nomeFornec) as 'Número de fornecedores'
+FROM tb_fornec;
+
+/* 2)Obter o número de cidades em que há fornecedores */
+/* errada */
+SELECT COunt(distinct cidadeFornec) as 'número de cidades em que há fornecedores'
+FROM tb_fornec;
+
+/* 3)Obter o número de fornecedores com cidade informada  */
+
+SELECT count(codFornec) as 'número de fornecedores com cidade informada'
+from tb_fornec
+where cidadeFornec is not NULL;
+
+/* 4)Obter a quantidade máxima embarcada  */
+
+select MAX(QtDeEmbarc) as 'quantidade máxima embarcada'
+from tb_embarque;
+
+/* 5)Obter o número de embarques de cada fornecedor  */
+
+select codFornec, count(codFornec) as 'número de embarques'
+from tb_embarque
+group by codFornec;
+
+/* 6)Obter o número de embarques de quantidade maior que 300 de cada fornecedor */
+
+select codFornec, count(codFornec) as 'número de embarques de quantidade maior que 300'
+from tb_embarque
+where QtDeEmbarc > 300
+group by codFornec;
+
+/* 7) Obter a quantidade total embarcada de peças de cor cinza para cada fornecedor  */
+
+select e.codFornec, SUM(e.QtDeEmbarc)
+from tb_embarque as e
+inner join tb_peca as p
+on p.codPeca = e.codPeca
+where p.corPeca = 'Cinza'
+group by (e.codFornec);
+
+/* 8) Obter o quantidade total embarcada de peças para cada fornecedor.
+ Exibir o resultado por ordem descendente de quantidade total embarcada.  */
+ 
+ SELECT codFornec, SUM(QtDeEmbarc) as 'Quantidade total embarcada'
+ from tb_embarque
+ group by codFornec
+ order by SUM(QtDeEmbarc) desc;
+
+/* 9) Obter os códigos de fornecedores
+que tenham embarques de mais de 500 unidades de peças cinzas,
+junto com a quantidade de embarques de peças cinzas */
+
+SELECT 
+	e.codFornec, count(e.QtDeEmbarc)
+from tb_fornec as f
+inner join tb_embarque as e
+on f.codFornec = e.codFornec
+inner join tb_peca as p
+on p.codPeca = e.codPeca
+where p.corPeca = 'Cinza' and QtDeEmbarc > 500
+group by (e.codFornec);
