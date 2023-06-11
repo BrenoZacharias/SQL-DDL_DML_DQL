@@ -13,7 +13,8 @@ INSERT INTO SALA VALUES
 
 INSERT INTO TITULACAO VALUES
 (1, 'Doutor'),
-(2, 'Mestre');
+(2, 'Mestre'),
+(3, 'Pós-Graduado');
 
 INSERT INTO Depto VALUES
 ('INF01', 'Informártica'),
@@ -28,7 +29,8 @@ INSERT INTO Depto VALUES
 INSERT INTO PROFESSOR VALUES 
 (1, 'INF01', 1, 'Anderson'),
 (2, 'INF01', 1, 'Antunes'),
-(3, '00002', 1, 'Felix');
+(3, '00002', 1, 'Felix'),
+(4, '00001', 3, 'Neninho');
 
 INSERT INTO Disciplina VALUES
 ('INF01', 1, 'Redes', 3),

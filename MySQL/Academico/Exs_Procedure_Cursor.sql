@@ -340,7 +340,7 @@ Além dos nomes, mostrar as chaves primárias das turmas em
 conflito. */
 
 SELECT DISTINCT Professor.NomeProf, ProfTurma.anoSem, ProfTurma.codDepto,
-ProfTurma.numDisc, ProfTurma.siglaTur
+ProfTurma.numDisc, ProfTurma.siglaTur, Horario.anoSem, Horario.diaSem, Horario.horaInicio
 FROM Horario,
 Horario AS Horario2,
 ProfTurma AS ProfTurma,
